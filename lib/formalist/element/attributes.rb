@@ -28,8 +28,10 @@ module Formalist
             [:array, value.map { |v| deep_to_ast(v) }]
           when String, Numeric, TrueClass, FalseClass, NilClass
             [:value, [value]]
-          else
+          when Symbol
             [:value, [value.to_s]]
+          else
+            [:value, nil]
         end
       end
 
@@ -41,11 +43,13 @@ module Formalist
             value.map { |v| deep_simplify(v) }
           when String, Numeric, TrueClass, FalseClass, NilClass
             value
+          when Symbol
+            value.to_s
           else
             if value.respond_to?(:to_h)
               deep_simplify(value.to_h)
             else
-              value.to_s
+              nil
             end
         end
       end
