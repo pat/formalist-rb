@@ -10,7 +10,7 @@ module Formalist
 
     # @api private
     def self.build(**args)
-      new(args)
+      new(**args)
     end
 
     # @api private
@@ -45,7 +45,7 @@ module Formalist
         meta: meta,
       }.merge(args)
 
-      self.class.new(args)
+      self.class.new(**args)
     end
 
     def type

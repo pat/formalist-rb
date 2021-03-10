@@ -14,7 +14,7 @@ module Formalist
           type, data = form_data.values_at(:name, :data)
 
           if container.key?(type)
-            container[type].(data, options)
+            container[type].(data, **options)
           else
             ""
           end
